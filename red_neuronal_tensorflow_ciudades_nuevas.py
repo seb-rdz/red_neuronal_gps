@@ -30,7 +30,7 @@ datos_buenos_aires = circulo(num_datos=N, R=1, latitud= -34.603722, longitud= -5
 
 X = np.concatenate([datos_madrid, datos_buenos_aires])
 X = np.round(X, 3)
-print ('X : ', X) 
+print ('X : ', X)
 
 y = [0] * N + [1] * N
 y = np.array(y).reshape(len(y), 1)
@@ -66,8 +66,12 @@ print('W 2', w)
 print('b 2', b)
 
 print('predict city 1 : Madrid')
-#print(linear_model.predict([[-43.598, -28.107], [-46.268, -14.62 ], [-45.154, -3.249],[-46.52,  -21.315],[-41.719, -10.532],[-48.291, -28.376],[-37.896, -15.371],[-50.693, -14.077],[-45.473,  -2.488],[-51.73,  -12.565]] ).tolist() )   
-#print(linear_model.predict([[-43.598, -28.107], [-46.268, -14.62 ]] ).tolist() )
+madrid_matrix = tf.constant([ [40.40816, -3.69345], [40.3, -3.71667 ], 
+                               [40.4895, -3.5643],[40.4180,  -3.7143]], tf.float32)
+
+print(linear_model.predict(madrid_matrix).tolist())
 
 print('predict city 2 : Buenos Aires')
-#print(linear_model.predict([[ 65.036 55.836], [ 61.994 40.178], [ 63.825 55.253], [ 67.445 44.393], [ 64.888 45.202], [ 64.549 54.043], [ 75.494 43.773], [ 66.424 54.609], [71.869 48.677], [58.542 51.449]] ).tolist() ) 
+buenos_aires_matrix = tf.constant([[-34.6037, -58.3816], [ -34.8165, -58.5373], 
+                                 [-34.6084, -58.3723], [-34.5839, -58.3929]], tf.float32)
+print(linear_model.predict(buenos_aires_matrix).tolist())
